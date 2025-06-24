@@ -46,3 +46,4 @@ python lprs1disassembler.py example/instr_rom.vhdl output.asm
 # Kontakt
 
 Autor ovog projekta je **Andrej Vujić**, student 2. godine studijskog programa Računarstvo i automatika.
+# lprs1-disassembler
