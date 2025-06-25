@@ -1,14 +1,38 @@
 class MemoryEntry:
+    """
+    Predstavlja memorijsku vrijednost dekodiranu iz heksadecimalnog oblika
+    kao potpisani cijeli broj (signed integer).
+    """
+
     def __init__(self, value):
+        """
+        Inicijalizuje instancu klase sa zadatom vrijednošću.
+
+        :param value: Potpisana cijela vrijednost memorijskog zapisa.
+        """
         self.value = value
 
     @staticmethod
     def from_raw_value(raw_value):
+        """
+        Kreira instancu klase MemoryEntry iz heksadecimalnog stringa.
+
+        :param raw_value: Heksadecimalni string.
+        :return: Instanca klase MemoryEntry.
+        """
         value = MemoryEntry.parse_raw_value(raw_value)
         return MemoryEntry(value=value)
 
     @staticmethod
     def parse_raw_value(raw_value):
+        """
+        Parsira heksadecimalni string i vraća njegovu potpisanu cijelu vrijednost.
+        Pretpostavlja se da je broj u komplement 2 obliku (16-bitni).
+
+        :param raw_value: Heksadecimalni string.
+        :return: Potpisana cijela vrijednost.
+        :raises Exception: Ako je unos prazan ili neispravan.
+        """
         if not raw_value:
             raise Exception(
                 f"Error! Invalid memory entry."
@@ -29,6 +53,12 @@ class MemoryEntry:
 
     @staticmethod
     def convert_hex_to_binary(hex_value):
+        """
+        Pretvara heksadecimalni string u binarni string dužine 16 bita.
+
+        :param hex_value: Heksadecimalni string.
+        :return: Binarni string (16 bita).
+        """
         decimal_value = MemoryEntry.convert_hex_to_decimal(hex_value)
         binary_value = MemoryEntry.convert_decimal_to_binary(
             decimal_value,
@@ -38,6 +68,12 @@ class MemoryEntry:
 
     @staticmethod
     def convert_hex_to_decimal(hex_value):
+        """
+        Pretvara heksadecimalni string u decimalni broj.
+
+        :param hex_value: Heksadecimalni string.
+        :return: Decimalna vrijednost.
+        """
         last_index = len(hex_value) - 1
         index = last_index
         decimal_value = 0
@@ -53,6 +89,13 @@ class MemoryEntry:
 
     @staticmethod
     def convert_hex_digit_to_decimal_digit(hex_digit):
+        """
+        Pretvara heksadecimalnu cifru u decimalnu cifru.
+
+        :param hex_digit: Karakter (0-9, A-F).
+        :return: Decimalna cifra.
+        :raises Exception: Ako je cifra neispravna.
+        """
         ALLOWED_DIGITS = [
             "0", "1", "2", "3", "4", "5", "6",
             "7", "8", "9", "A", "B", "C", "D",
@@ -69,6 +112,12 @@ class MemoryEntry:
 
     @staticmethod
     def convert_decimal_to_binary(decimal_value):
+        """
+        Pretvara decimalni broj u binarni string.
+
+        :param decimal_value: Decimalni broj.
+        :return: Binarni string.
+        """
         binary_value = ""
 
         while decimal_value > 0:
@@ -79,6 +128,12 @@ class MemoryEntry:
 
     @staticmethod
     def convert_binary_to_decimal(binary_value):
+        """
+        Pretvara binarni string u decimalni broj.
+
+        :param binary_value: Binarni string.
+        :return: Decimalna vrijednost.
+        """
         last_index = len(binary_value) - 1
         index = last_index
         decimal_value = 0
@@ -92,6 +147,12 @@ class MemoryEntry:
 
     @staticmethod
     def invert_binary_value(binary_value):
+        """
+        Invertuje svaki bit binarnog stringa (koristi se za komplement 2).
+
+        :param binary_value: Binarni string.
+        :return: Inverzija binarnog stringa.
+        """
         bits = map(lambda bit: "1" if bit == "0" else "0", list(binary_value))
         return "".join(list(bits))
 
