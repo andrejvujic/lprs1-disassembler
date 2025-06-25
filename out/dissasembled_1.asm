@@ -3,15 +3,7 @@
 
 
 .data
-26
-32
-5
--1
--2
--3
--4
-6
-
+// You didn't provide a data RAM VHDL file.
 
 .text
 inc R0, R0
