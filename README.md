@@ -36,6 +36,16 @@ Moguće je priložiti i <code>data_ram.vhdl</code> datoteku pomoću koje disasem
 
 Disasembler nije u mogućnosti da sazna u kojem zapisu (da li u decimalnom ili heksadecimalnom) su vrijednosti iz <code>.data</code> sekcije bile zadane u originalnom kodu, pa zbog toga sve vrijednosti predstavlja u decimalnom zapisu.
 
+### MacOS/Linux
+```bash
+./lprs1disassembler.py example/instr_rom.vhdl -drf example/data_ram.vhdl
+```
+
+### Windows
+```bash
+python lprs1disassembler.py example/instr_rom.vhdl -drf example/data_ram.vhdl
+```
+
 ## Izlazna datoteka (opciono)
 Disasembler će generisanu datoteku smjestiti u folder <code>out</code>. Podrazumijevani naziv izlazne datoteke je <code>disassembled.asm</code>, ali ga je moguće prilagoditi tako što se proslijedi dodatni argument, pomoću opcije <code>-o</code> ili <code>--output</code>, koji predstavlja željeni naziv izlazne datoteke.
 
