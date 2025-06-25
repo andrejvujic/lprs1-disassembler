@@ -30,17 +30,23 @@ python lprs1disassembler.py example/instr_rom.vhdl
 
 Disassembler na ulazu očekuje putanju ka kompletnoj <code>instr_rom.vhdl</code> datoteci koju LPRS1 assembler popunjava instrukcijama tokom asembliranja.
 
-## Izlazna datoteka
-Disasembler će generisanu datoteku smjestiti u folder <code>out</code>. Podrazumijevani naziv izlazne datoteke je <code>disassembled.asm</code>, ali ga je moguće prilagoditi tako što se proslijedi dodatni argument koji predstavlja željeni naziv izlazne datoteke.
+## Data ROM datoteka (opciono)
+
+Moguće je priložiti i <code>data_ram.vhdl</code> datoteku pomoću koje disasembler popunjava <code>.data</code> sekciju izlazne datoteke. Putanju ka <code>data_ram.vhdl</code> datoteci treba priložiti pomoću opcija <code>-drf</code> ili <code>--data-ram-file</code>.
+
+Disasembler nije u mogućnosti da sazna u kojem zapisu (da li u decimalnom ili heksadecimalnom) su vrijednosti iz <code>.data</code> sekcije bile zadane u originalnom kodu, pa zbog toga sve vrijednosti predstavlja u decimalnom zapisu.
+
+## Izlazna datoteka (opciono)
+Disasembler će generisanu datoteku smjestiti u folder <code>out</code>. Podrazumijevani naziv izlazne datoteke je <code>disassembled.asm</code>, ali ga je moguće prilagoditi tako što se proslijedi dodatni argument, pomoću opcije <code>-o</code> ili <code>--output</code>, koji predstavlja željeni naziv izlazne datoteke.
 
 ### MacOS/Linux
 ```bash
-./lprs1disassembler.py example/instr_rom.vhdl output.asm
+./lprs1disassembler.py example/instr_rom.vhdl -o output.asm
 ```
 
 ### Windows
 ```bash
-python lprs1disassembler.py example/instr_rom.vhdl output.asm
+python lprs1disassembler.py example/instr_rom.vhdl -o output.asm
 ```
 
 # Kontakt
