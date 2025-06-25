@@ -1,4 +1,5 @@
 INSTRUCTIONS_LOCATION_INDICATOR = "------------------------------------------------------------------\n"
+DATA_ENTRIES_LOCATION_INDICATOR = "------------------------------------------------------------------\n"
 
 EXPECTED_REGISTER_IDENTIFIER_LEN = 3
 EXPECTED_INSTRUCTION_LEN = 15

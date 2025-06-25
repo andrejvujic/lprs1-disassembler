@@ -4,6 +4,7 @@ import re
 from .constants import INSTRUCTIONS_LOCATION_INDICATOR
 from .instructions.instruction import Instruction
 from .instructions.types.jmp_instruction import JMPInstruction
+from .memory.memory import Memory
 
 
 class Disassembler:
@@ -15,18 +16,31 @@ class Disassembler:
     i omogućava eksport u asm format.
     """
 
-    def __init__(self, instruction_rom_file_name: str):
+    def __init__(self, instruction_rom_file_name: str, data_ram_file_name: str):
         """
         Inicijalizuje disassembler sa putanjom do instrukcijske ROM datoteke.
 
         Automatski pokreće proces disasembliranja.
 
         :param instruction_rom_file_name: Naziv ili putanja ulazne VHDL datoteke
+        :param data_ram_file_name: Naziv ili putanja Data RAM VHDL datoteke
         """
         self.instruction_rom_file_name = instruction_rom_file_name
         self.instruction_rom_file_path = os.path.join(
             os.getcwd(), instruction_rom_file_name
         )
+
+        self.memory = Memory(
+            data_ram_file_name=data_ram_file_name
+        ) if data_ram_file_name else None
+
+        if data_ram_file_name:
+            self.data_ram_file_name = data_ram_file_name
+            self.data_ram_file_path = os.path.join(
+                os.getcwd(), data_ram_file_name,
+            )
+
+            self.memory.load_memory_entries()
 
         self.disassemble()
 
@@ -39,7 +53,7 @@ class Disassembler:
 
         self.add_labels_for_jumps()
 
-    def export(self, output_file_name="disassembled.asm"):
+    def export(self, output_file_name):
         """
         Eksportuje disasemblirane instrukcije u tekstualni ASM fajl.
 
@@ -47,6 +61,9 @@ class Disassembler:
 
         :param output_file_name: Naziv izlazne ASM datoteke (podrazumevano "disassembled.asm")
         """
+
+        output_file_name = output_file_name if output_file_name else "dissasembled.asm"
+
         output_dir = os.path.join(os.getcwd(), "out")
         os.makedirs(output_dir, exist_ok=True)
 
@@ -56,7 +73,9 @@ class Disassembler:
             f.write(
                 f"// This code is the result of the disassembly of {self.instruction_rom_file_path}\n// LPRS1 disassembler by Andrej Vujić.\n\n\n"
             )
-            f.write(".data\n// Data goes here...\n\n")
+
+            memory_entries = self.memory if self.memory else "// You didn\'t provide a data RAM VHDL file."
+            f.write(f".data\n{memory_entries}\n\n")
             f.write(".text\n")
 
             for instruction in self.instructions:
