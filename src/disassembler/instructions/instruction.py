@@ -21,7 +21,7 @@ class Instruction:
 
     def set_label_number(self, label_number: int):
         """
-        Dodeljuje broj labeli koji će biti prikazan ispred instrukcije (npr. label3:).
+        Dodjeljuje broj labeli koji će biti prikazan ispred instrukcije (npr. label3:).
 
         :param label_number: Broj koji predstavlja labelu
         """
@@ -85,12 +85,13 @@ class Instruction:
             )
 
         raise Exception(
-            "Error! There are no instructions with more than 3 registers!")
+            "Error! There are no instructions with more than 3 registers!"
+        )
 
     @staticmethod
     def split_raw_instruction(raw_instruction: str) -> tuple[str, str, str, str, int]:
         """
-        Parsira sirovu binarnu instrukciju i odvaja je na delove: šifra instrukcije, registri i destinacija za skok.
+        Parsira sirovu binarnu instrukciju i odvaja je na dijelove: šifra instrukcije, registri i destinacija za skok.
 
         :param raw_instruction: Binarni string instrukcije
         :return: Tuple: (šifra instrukcije, RZ, RX, RY, destinacija skoka)
@@ -109,7 +110,7 @@ class Instruction:
     @staticmethod
     def parse_jmp_destination(raw_jmp_destination: str) -> int:
         """
-        Pretvara binarnu string reprezentaciju destinacije za skok u celobrojnu vrednost.
+        Pretvara binarnu string reprezentaciju destinacije za skok u cjelobrojnu vrednost.
 
         :param raw_jmp_destination: Binarni string (npr. "0000010010")
         :return: Decimalna vrednost destinacije

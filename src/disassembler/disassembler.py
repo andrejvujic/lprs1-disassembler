@@ -63,21 +63,17 @@ class Disassembler:
                 f.write(f"{instruction}\n")
 
     def load_instruction_rom_content(self):
-        """
-        Učitava sadržaj ulazne instrukcijske ROM datoteke kao listu stringova.
-
-        :return: Lista linija iz datoteke
-        """
         with open(self.instruction_rom_file_path, "r") as f:
             raw_content = f.readlines()
         return raw_content
 
     def load_instructions(self):
         """
-        Parsira instrukcije iz učitanog sadržaja ROM datoteke.
+        Učitava asemblirane instrukcije iz instrukcijskog ROMa.
 
         Traži liniju sa indikatorom lokacije instrukcija i zatim
-        izdvaja stringove unutar navodnika.
+        izdvaja stringove unutar navodnika, koji predstavljaju
+        instrukcije koje je LPRS1 assembler generisao.
 
         :return: Lista binarnih stringova koji predstavljaju instrukcije
         :raises Exception: Ako ne može pronaći instrukcije ili nisu validne
@@ -119,8 +115,8 @@ class Disassembler:
         """
         Dodaje labele na instrukcije koje su odredište jump instrukcija.
 
-        Svakoj jump instrukciji dodeljuje jedinstven ordinalni broj
-        koji se koristi kao labela.
+        Svakoj jump instrukciji dodeljuje jedinstven redni broj
+        koji se koristi u nazivu labele.
         """
         jump_number = 0
         for instruction in self.instructions:

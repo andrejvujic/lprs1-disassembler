@@ -42,7 +42,7 @@ class Operation:
 
     def is_single_register(self):
         """
-        Proverava da li instrukcija koristi jedan registar.
+        Provjerava da li instrukcija koristi jedan registar.
 
         :return: True ako koristi tačno jedan registar, inače False
         """
@@ -50,7 +50,7 @@ class Operation:
 
     def is_double_register(self):
         """
-        Proverava da li instrukcija koristi dva registra.
+        Provjerava da li instrukcija koristi dva registra.
 
         :return: True ako koristi tačno dva registra, inače False
         """
@@ -58,7 +58,7 @@ class Operation:
 
     def is_triple_register(self):
         """
-        Proverava da li instrukcija koristi tri registra.
+        Provjerava da li instrukcija koristi tri registra.
 
         :return: True ako koristi tačno tri registra, inače False
         """

@@ -26,7 +26,7 @@ class Register:
     @staticmethod
     def is_valid_register_identifier(raw_register_identifier: str) -> bool:
         """
-        Proverava da li je dati string validan binarni identifikator registra.
+        Provjerava da li je dati string validan binarni identifikator registra.
 
         :param raw_register_identifier: Binarni string
         :return: True ako je validan, False ako nije
